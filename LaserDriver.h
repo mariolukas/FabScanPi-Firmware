@@ -8,6 +8,8 @@
 #endif
  
 void initialize_laser_driver();
+void left_laser_on();
+void left_laser_off();
 void right_laser_on();
 void right_laser_off();
 boolean laser_active();
