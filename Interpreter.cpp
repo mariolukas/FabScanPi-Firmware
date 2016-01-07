@@ -87,7 +87,7 @@ void help() {
   Serial.println(F("M19; - turn left laser on"));
   Serial.println(F("M20; - turn left laser off"));
   Serial.println(F("M21; - turn right laser on"));
-  Serial.println(F("M22; - turn eight laser off"));
+  Serial.println(F("M22; - turn right laser off"));
   Serial.println(F("M100; - this help message"));
   Serial.println(F("M114; - report position and feedrate"));
 }
@@ -186,10 +186,22 @@ void processCommand() {
   case 5:
     set_leds(parsenumber('R',0),parsenumber('G',0),parsenumber('B',0));
   break;
-  
-  case 18:  // disable motors
-   
+
+  case 17:  // enable motors
+    turntable_motor_enable();
+    laser_motor_enable();
     break;
+  case 18:  // disable motors
+    turntable_motor_release();
+    laser_motor_release();
+    break;
+  case 19:
+      left_laser_on();
+    break;
+  case 20:
+      left_laser_off();
+    break;
+
   case 21:
       right_laser_on();
     break;
