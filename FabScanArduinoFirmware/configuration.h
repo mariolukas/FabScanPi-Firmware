@@ -10,7 +10,7 @@
 #define CONFIGURATION_H
 
 // for use with Sanguinololu v1.2 and v1.3
-#define SANGUINOLOLU_V_1_2
+//#define SANGUINOLOLU_V_1_2
 
 
 #define LIGHT_PIN A1
