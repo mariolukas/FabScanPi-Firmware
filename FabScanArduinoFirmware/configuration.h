@@ -14,7 +14,7 @@
 
 
 #define LIGHT_PIN A1
-#define RIGHT_LASER_PIN 10
+#define RIGHT_LASER_PIN A4
 #define LEFT_LASER_PIN 9
 //Sanguinololu v1.3a
 #ifdef SANGUINOLOLU_V_1_2
@@ -30,7 +30,7 @@
 #define MIN_FEEDRATE         (1000)
 
 
-#define VERSION        "2015-10-03"
+#define VERSION        "v.20160211"
 
 // Set to 1 for plololu driver
 // Set to 4 for silent step sticks
