@@ -2,7 +2,7 @@ language: cpp
 env:
  # We'll test against only a single library example, and only for uno, but you could add more combinations
  # https://github.com/arduino/Arduino/blob/master/build/shared/manpage.adoc
- - BOARD=arduino:avr:uno NAME=FasbScanArduinoFirmware
+ - BOARD=arduino:avr:uno NAME=FabScanArduinoFirmware
 #  - BOARD=attiny:avr:attiny85 NAME=$NullStreamExample
 
 compiler:
