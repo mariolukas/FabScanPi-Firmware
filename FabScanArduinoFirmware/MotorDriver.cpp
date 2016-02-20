@@ -11,21 +11,21 @@ boolean isTurning = false;
 
 
 void turntable_motor_enable(){
-   digitalWrite(ENABLE_PIN_0,LOW);
+   digitalWrite(ENABLE_PIN_0,HIGH);
 }
 
 
 void turntable_motor_release(){
 
-  digitalWrite(ENABLE_PIN_0, HIGH);
+  digitalWrite(ENABLE_PIN_0, LOW);
 }
 
 void laser_motor_enable(){
-  digitalWrite(ENABLE_PIN_1, LOW);
+  digitalWrite(ENABLE_PIN_1, HIGH);
 }
 
 void laser_motor_release(){
-  digitalWrite(ENABLE_PIN_1, HIGH);
+  digitalWrite(ENABLE_PIN_1, LOW);
 }
 
 

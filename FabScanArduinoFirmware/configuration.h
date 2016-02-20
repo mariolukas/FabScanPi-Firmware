@@ -16,6 +16,7 @@
 #define LIGHT_PIN A1
 #define RIGHT_LASER_PIN A4
 #define LEFT_LASER_PIN 9
+
 //Sanguinololu v1.3a
 #ifdef SANGUINOLOLU_V_1_2
 #define RIGHT_LASER_PIN 12 //Bed (1284p=p18
@@ -30,7 +31,7 @@
 #define MIN_FEEDRATE         (1000)
 
 
-#define VERSION        "v.20160211"
+#define VERSION        "v.20160221"
 
 // Set to 1 for plololu driver
 // Set to 4 for silent step sticks
@@ -43,6 +44,7 @@
 #define ENABLE_PIN_0  2
 #define STEP_PIN_0    3
 #define DIR_PIN_0     4
+
 //Sanguinololu v1.3a
 #ifdef SANGUINOLOLU_V_1_2
 #define ENABLE_PIN_0  14
@@ -55,11 +57,11 @@
  * OPTIONAL STEPPERS 
  **************************************************/
 
-
 //Stepper 2, Laser Stepper
 #define ENABLE_PIN_1  5
 #define STEP_PIN_1    6
 #define DIR_PIN_1     7
+
 //Sanguinololu v1.3a
 #ifdef SANGUINOLOLU_V_1_2
 #define ENABLE_PIN_1  26

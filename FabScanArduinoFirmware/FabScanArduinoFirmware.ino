@@ -22,8 +22,9 @@ void setup()
   initialize_laser_driver();
   initialize_motor_driver();
   initialize_led_driver();
+  turntable_motor_release();
+  laser_motor_release();
 
-   
   currStepper = TURNTABLE_STEPPER;  //turntable is default stepper
   //version(); 
   //ready();
