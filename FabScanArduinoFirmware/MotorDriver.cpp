@@ -2,30 +2,27 @@
 #include "MotorDriver.h"
 #include "AccelStepper.h"
 
-AccelStepper laser(1,STEP_PIN_1, DIR_PIN_1);
 AccelStepper turntable(2, STEP_PIN_0, DIR_PIN_0);
-
+AccelStepper laser(1, STEP_PIN_1, DIR_PIN_1);
 
 int currStepper = TURNTABLE_STEPPER;
 boolean isTurning = false;
 
 
 void turntable_motor_enable(){
-   digitalWrite(ENABLE_PIN_0,HIGH);
+   digitalWrite(ENABLE_PIN_0,LOW);
 }
 
-
 void turntable_motor_release(){
-
-  digitalWrite(ENABLE_PIN_0, LOW);
+  digitalWrite(ENABLE_PIN_0, HIGH);
 }
 
 void laser_motor_enable(){
-  digitalWrite(ENABLE_PIN_1, HIGH);
+  digitalWrite(ENABLE_PIN_1, LOW);
 }
 
 void laser_motor_release(){
-  digitalWrite(ENABLE_PIN_1, LOW);
+  digitalWrite(ENABLE_PIN_1, HIGH);
 }
 
 
@@ -43,6 +40,8 @@ void initialize_motor_driver(){
   digitalWrite(MICROSTEP,LOW);
   pinMode(ENABLE_PIN_0, OUTPUT);
   pinMode(ENABLE_PIN_1, OUTPUT);
+  pinMode(STEP_PIN_0, OUTPUT);
+  pinMode(STEP_PIN_1, OUTPUT);
   digitalWrite(MICROSTEP,HIGH);
 
   //motors_release();
@@ -54,9 +53,6 @@ void initialize_motor_driver(){
   
   turntable_motor_release();
   laser_motor_release();
-
-    laser_motor_enable();
-    turntable_motor_enable();
 
 }
 
@@ -85,8 +81,6 @@ void step(int motor, float steps, float feedrate){
 
 
 void do_move(int t_steps, int l_steps, float feedrate){
-
-
   
   if (t_steps != 0){
     step(TURNTABLE_STEPPER, t_steps, feedrate); 

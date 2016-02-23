@@ -31,7 +31,7 @@
 #define MIN_FEEDRATE         (1000)
 
 
-#define VERSION        "v.20160221"
+#define VERSION        "v.20160222"
 
 // Set to 1 for plololu driver
 // Set to 4 for silent step sticks
@@ -58,9 +58,9 @@
  **************************************************/
 
 //Stepper 2, Laser Stepper
-#define ENABLE_PIN_1  5
-#define STEP_PIN_1    6
-#define DIR_PIN_1     7
+#define ENABLE_PIN_1  11
+#define STEP_PIN_1    12
+#define DIR_PIN_1     13
 
 //Sanguinololu v1.3a
 #ifdef SANGUINOLOLU_V_1_2
