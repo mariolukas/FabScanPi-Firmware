@@ -31,7 +31,7 @@
 #define MIN_FEEDRATE         (1000)
 
 
-#define VERSION        "v.20160222"
+#define VERSION        "v.20160223"
 
 // Set to 1 for plololu driver
 // Set to 4 for silent step sticks
