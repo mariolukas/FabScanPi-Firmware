@@ -59,7 +59,7 @@ int parsenumber(char code,int val) {
  * @input code the string.
  * @input val the float.
  */
-void output(char *code,float val) {
+void output(const char *code,float val) {
 	Serial.print(code);
 	Serial.println(val);
 }
