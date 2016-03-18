@@ -27,9 +27,8 @@ before_script:
  # https://github.com/arduino/Arduino/issues/1981
  - Xvfb :1 -screen 0 1024x768x16 &> xvfb.log &
  # put your source files in a folder under a new libraries folder
- - sudo mkdir /usr/src/arduino
- - sudo mkdir /usr/src/arduino/libraries
- - sudo ln -s $TRAVIS_BUILD_DIR/FabScanArduinoFirmware /usr/src/arduino/libraries/FabScanArduinoFirmware
+ - sudo mkdir -p /usr/src/arduino/libraries
+ - sudo ln -s $TRAVIS_BUILD_DIR/$NAME /usr/src/arduino/libraries/$NAME
 
 script:
- - sudo DISPLAY=:1.0 /usr/local/share/arduino/arduino --board $BOARD --pref sketchbook.path=/usr/src/arduino --verify /usr/src/arduino/libraries/something/examples/$NAME/$NAME.ino
+ - sudo DISPLAY=:1.0 /usr/local/share/arduino/arduino --board $BOARD --pref sketchbook.path=/usr/src/arduino --verify /usr/src/arduino/libraries/$NAME/$NAME.ino
