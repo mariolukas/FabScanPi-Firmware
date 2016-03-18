@@ -143,7 +143,7 @@ void processCommand() {
 	switch(cmd) {
 		case  0: // move linear
 		case  1: // move linear
-			if (!laser_active) right_laser_on();
+			if (!laser_active()) right_laser_on();
 			delay(100);
 			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0));
 			break;
