@@ -20,15 +20,6 @@ void initialize_led_driver(){
     pixels.begin();
 }
 
-void set_led(int r, int g, int b){
-   for(int i=0;i<NUMPIXELS;i++){
-    pixels.setPixelColor(i, pixels.Color(r,b,b)); // Moderately bright green color.
-
-  }
-    pixels.show(); // This sends the updated pixel color to the hardware.
-
-}
-
 
 char buffer[MAX_BUF];  // where we store the message until we get a ';'
 int sofar;  // how much is in the buffer
