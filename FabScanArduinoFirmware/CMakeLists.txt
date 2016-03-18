@@ -28,6 +28,7 @@ set(HEADER_FILES
 	"Interpreter.h"
 	"LaserDriver.h"
 	"MotorDriver.h"
+	"configuration.h"
 )
 
 #====================================================================#
