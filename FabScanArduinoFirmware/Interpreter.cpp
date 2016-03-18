@@ -241,7 +241,7 @@ void feedrate(float nfr) {
 		return;
 	}
 
-	long us_per_min = 60 * 1000 * 1000;
+	long us_per_min = 60 * 1000l * 1000l;
 	long x = us_per_min / nfr;
 	step_delay_ms = x / 1000;
 	step_delay_us = x % 1000;
