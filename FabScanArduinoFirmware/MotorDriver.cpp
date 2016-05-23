@@ -10,103 +10,97 @@ boolean isTurning = false;
 
 
 void turntable_motor_enable(){
-   digitalWrite(ENABLE_PIN_0,LOW);
+	digitalWrite(ENABLE_PIN_0,LOW);
 }
 
 void turntable_motor_release(){
-  digitalWrite(ENABLE_PIN_0, HIGH);
+	digitalWrite(ENABLE_PIN_0, HIGH);
 }
 
 void laser_motor_enable(){
-  digitalWrite(ENABLE_PIN_1, LOW);
+	digitalWrite(ENABLE_PIN_1, LOW);
 }
 
 void laser_motor_release(){
-  digitalWrite(ENABLE_PIN_1, HIGH);
+	digitalWrite(ENABLE_PIN_1, HIGH);
 }
 
 
 int direction(long distance){
-    if (distance < 0){
-      return HIGH;
-    }else{
-      return LOW;
-    }
+	if (distance < 0){
+		return HIGH;
+	}else{
+		return LOW;
+	}
 }
 
 void initialize_motor_driver(){
+	pinMode(MICROSTEP, OUTPUT);
+	digitalWrite(MICROSTEP,LOW);
+	pinMode(ENABLE_PIN_0, OUTPUT);
+	pinMode(ENABLE_PIN_1, OUTPUT);
+	pinMode(STEP_PIN_0, OUTPUT);
+	pinMode(STEP_PIN_1, OUTPUT);
+	digitalWrite(MICROSTEP,HIGH);
 
-  pinMode(MICROSTEP, OUTPUT);
-  digitalWrite(MICROSTEP,LOW);
-  pinMode(ENABLE_PIN_0, OUTPUT);
-  pinMode(ENABLE_PIN_1, OUTPUT);
-  pinMode(STEP_PIN_0, OUTPUT);
-  pinMode(STEP_PIN_1, OUTPUT);
-  digitalWrite(MICROSTEP,HIGH);
+	//motors_release();
+	laser.setMaxSpeed(2000.0);
+	laser.setSpeed(700.0);
 
-  //motors_release();
-  laser.setMaxSpeed(2000.0);
-  laser.setSpeed(700.0);
-  
-  turntable.setMaxSpeed(2000.0);
-  turntable.setSpeed(700.0);
-  
-  turntable_motor_release();
-  laser_motor_release();
+	turntable.setMaxSpeed(2000.0);
+	turntable.setSpeed(700.0);
 
+	turntable_motor_release();
+	laser_motor_release();
 }
 
 
 void step(int motor, float steps, float feedrate){
-       
-      AccelStepper stepper;
-      if (motor == TURNTABLE_STEPPER ){
-          stepper = turntable;
-      }
-      
-      if (motor == LASER_STEPPER){  
-          stepper = laser;
-      }
-  
-      stepper.move(steps*SCALER);
-      stepper.setSpeed(100);
-      //motor.setAcceleration(acceleration);
-      
-      // Implementation without acceleration.
-      while (stepper.distanceToGo() != 0)
-        stepper.runSpeedToPosition();
-        //motor.run();
-     
+	AccelStepper stepper;
+	if (motor == TURNTABLE_STEPPER ){
+		stepper = turntable;
+	}
+
+	if (motor == LASER_STEPPER){
+		stepper = laser;
+	}
+
+	stepper.move(steps*SCALER);
+	stepper.setSpeed(100);
+	//motor.setAcceleration(acceleration);
+
+	// Implementation without acceleration.
+	while (stepper.distanceToGo() != 0)
+		stepper.runSpeedToPosition();
+	//motor.run();
 }
 
 
 void do_move(int t_steps, int l_steps, float feedrate){
-  
-  if (t_steps != 0){
-    step(TURNTABLE_STEPPER, t_steps, feedrate); 
-  }
-  
-  if (l_steps != 0){
-    // do laser steps
-     step(LASER_STEPPER, l_steps, feedrate);
-  }
-  
+	if (t_steps != 0){
+		step(TURNTABLE_STEPPER, t_steps, feedrate);
+	}
+
+	if (l_steps != 0){
+		// do laser steps
+		step(LASER_STEPPER, l_steps, feedrate);
+	}
 }
 
 void turn(){
-   if(isTurning){
-    turntable.setSpeed(1000);
-    turntable.move(10);
-    turntable.runSpeed();
-   } 
+	if(isTurning){
+		turntable.setSpeed(1000);
+		turntable.move(10);
+		turntable.runSpeed();
+	}
 }
 
 void start_turning(){
-  isTurning = true;
+	isTurning = true;
 }
 
 void stop_turning(){
-  isTurning = false;
+	isTurning = false;
 }
 
 

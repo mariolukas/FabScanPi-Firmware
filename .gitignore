@@ -1,0 +1,26 @@
+/.project
+*.pro.user*
+CMakeLists.txt.user*
+
+.make.cache
+.qmake.cache
+.qmake.vars
+
+*~
+*.a
+*.la
+*.lib
+*.moc
+*.o
+*.obj
+*.orig
+*.temp
+*.so
+*.core
+.DS_Store
+.svn
+*.qm
+
+# Build targets:
+/**/*-build/
+
