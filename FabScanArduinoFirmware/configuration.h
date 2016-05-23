@@ -11,11 +11,14 @@
 
 // for use with Sanguinololu v1.2 and v1.3
 //#define SANGUINOLOLU_V_1_2
-
+#define BAUD_RATE 57600
 
 #define LIGHT_PIN A1
 #define RIGHT_LASER_PIN A4
 #define LEFT_LASER_PIN 9
+
+#define FABSCAN_HAT_RIGHT_LASER 9
+#define FABSCAN_HAT_LEFT_LASER 10
 
 //Sanguinololu v1.3a
 #ifdef SANGUINOLOLU_V_1_2
@@ -31,7 +34,7 @@
 #define MIN_FEEDRATE         (1000)
 
 
-#define VERSION        "v.20160223"
+#define VERSION        "v.20160506"
 
 // Set to 1 for plololu driver
 // Set to 4 for silent step sticks
@@ -58,9 +61,9 @@
  **************************************************/
 
 //Stepper 2, Laser Stepper
-#define ENABLE_PIN_1  11
-#define STEP_PIN_1    12
-#define DIR_PIN_1     13
+#define ENABLE_PIN_1  5
+#define STEP_PIN_1    6
+#define DIR_PIN_1     7
 
 //Sanguinololu v1.3a
 #ifdef SANGUINOLOLU_V_1_2
