@@ -6,12 +6,15 @@
 
 //#define VERBOSE 0
 
+
+#define VERSION        "v.20160523"
+
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
 // for use with Sanguinololu v1.2 and v1.3
 //#define SANGUINOLOLU_V_1_2
-#define BAUD_RATE 57600
+#define BAUD_RATE 115200
 #define LIGHT_PIN A1
 
 
@@ -39,7 +42,6 @@
 #define MIN_FEEDRATE         (1000)
 
 
-#define VERSION        "v.20160506"
 
 // Set to 1 for plololu driver
 // Set to 4 for silent step sticks
