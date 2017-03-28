@@ -1,9 +1,12 @@
 #include "configuration.h"
 #include "MotorDriver.h"
 #include "AccelStepper.h"
+#include <Servo.h>
 
 AccelStepper turntable(2, STEP_PIN_0, DIR_PIN_0);
-AccelStepper laser(1, STEP_PIN_1, DIR_PIN_1);
+//AccelStepper laser(1, STEP_PIN_1, DIR_PIN_1);
+Servo right_servo;
+
 
 int currStepper = TURNTABLE_STEPPER;
 boolean isTurning = false;
@@ -25,6 +28,19 @@ void laser_motor_release(){
 	digitalWrite(ENABLE_PIN_1, HIGH);
 }
 
+void enable_right_servo(){
+  right_servo.attach(RIGHT_SERVO_PIN);
+}
+
+void release_right_servo(){
+  right_servo.detach();
+}
+
+void move_right_servo_to_position(byte pos){
+  enable_right_servo();
+  right_servo.write(pos);
+  release_right_servo();
+}
 
 int direction(long distance){
 	if (distance < 0){
@@ -44,14 +60,35 @@ void initialize_motor_driver(){
 	digitalWrite(MICROSTEP,HIGH);
 
 	//motors_release();
-	laser.setMaxSpeed(2000.0);
-	laser.setSpeed(700.0);
+	//laser.setMaxSpeed(2000.0);
+	//laser.setSpeed(700.0);
+  //laser_motor_release();
 
 	turntable.setMaxSpeed(2000.0);
 	turntable.setSpeed(700.0);
-
 	turntable_motor_release();
-	laser_motor_release();
+
+  // Laser Servos to initial position
+  move_right_servo_to_position(0);
+
+}
+
+void step_blocking(int motor, int steps, int feedrate){
+   AccelStepper stepper;
+   
+   
+   if (motor == TURNTABLE_STEPPER ){
+      stepper = turntable;
+   }
+   
+   stepper.move(steps*SCALER);
+   stepper.setSpeed(100);
+   stepper.setAcceleration(500); 
+
+   while (stepper.distanceToGo() != 0)
+    stepper.run();
+
+
 }
 
 
@@ -62,7 +99,7 @@ void step(int motor, float steps, float feedrate){
 	}
 
 	if (motor == LASER_STEPPER){
-		stepper = laser;
+		//stepper = laser;
 	}
 
 	stepper.move(steps*SCALER);
@@ -76,15 +113,26 @@ void step(int motor, float steps, float feedrate){
 }
 
 
-void do_move(int t_steps, int l_steps, float feedrate){
-	if (t_steps != 0){
-		step(TURNTABLE_STEPPER, t_steps, feedrate);
-	}
-
-	if (l_steps != 0){
-		// do laser steps
-		step(LASER_STEPPER, l_steps, feedrate);
-	}
+void do_move(int t_steps, int l_steps, float feedrate, boolean block){
+  if (block) {
+      if (t_steps != 0){
+        step_blocking(TURNTABLE_STEPPER, t_steps, feedrate);
+      }
+    
+      if (l_steps != 0){
+        // do laser steps
+        step_blocking(LASER_STEPPER, l_steps, feedrate);
+      }
+  } else {
+    	if (t_steps != 0){
+    		step(TURNTABLE_STEPPER, t_steps, feedrate);
+    	}
+    
+    	if (l_steps != 0){
+    		// do laser steps
+    		step(LASER_STEPPER, l_steps, feedrate);
+    	}
+  }
 }
 
 void turn(){

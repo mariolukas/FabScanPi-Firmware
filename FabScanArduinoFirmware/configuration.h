@@ -6,8 +6,11 @@
 
 //#define VERBOSE 0
 
+// You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
+//#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
 
-#define VERSION        "v.20160523"
+
+#define VERSION        "v.20170318"
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
@@ -65,7 +68,6 @@
 
 #endif
 
-
 /*************************************************
  * OPTIONAL STEPPERS
  **************************************************/
@@ -84,6 +86,9 @@
 #define DIR_PIN_1     7
 
 #endif
+
+#define RIGHT_SERVO_PIN 6
+#define LEFT_SERVO_PIN 12
 
 /**********************************************
  * STEPPER DEFINES FOR SELECTION

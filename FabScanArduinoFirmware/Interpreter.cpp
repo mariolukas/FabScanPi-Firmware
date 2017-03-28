@@ -143,14 +143,20 @@ void processCommand() {
 	switch(cmd) {
 		case  0: // move linear
 		case  1: // move linear
-			if (!laser_active()) right_laser_on();
-			delay(100);
-			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0));
+			//if (!laser_active()) right_laser_on();
+			//delay(100);
+			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), 0);
 			break;
+    case 2:
+      do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), 1);
+      break;
 		case  4:
-			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0));
+			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), 0);
 			break;
 
+    case 5:
+      move_right_servo_to_position(parsenumber('A',0));
+      break;
 		case 6:
 			start_turning();
 			break;
@@ -158,6 +164,7 @@ void processCommand() {
 		case 7:
 			stop_turning();
 			break;
+
 
 		case 90: // mode_abs=1;  break;  // absolute mode
 		case 91: // mode_abs=0;  break;  // relative mode
@@ -177,7 +184,6 @@ void processCommand() {
 		case 5:
 			set_leds(parsenumber('R',0),parsenumber('G',0),parsenumber('B',0));
 			break;
-
 		case 17:  // enable motors
 			turntable_motor_enable();
 			laser_motor_enable();
