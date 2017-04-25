@@ -10,7 +10,7 @@
 //#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
 
 
-#define VERSION        "v.20170318"
+#define VERSION        "v.20170326"
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
@@ -20,9 +20,8 @@
 #define BAUD_RATE 115200
 #define LIGHT_PIN A1
 
-
-#define FABSCAN_HAT_RIGHT_LASER 9
-#define FABSCAN_HAT_LEFT_LASER 10
+#define TURN_BLOCKING 1
+#define TURN_NON_BLOCKING 0
 
 //Sanguinololu v1.3a
 #ifdef SANGUINOLOLU_V_1_2
@@ -32,8 +31,8 @@
 
 #else
 
-#define RIGHT_LASER_PIN A4
-#define LEFT_LASER_PIN 9
+#define RIGHT_LASER_PIN 9
+#define LEFT_LASER_PIN 10
 
 #endif
 
@@ -44,11 +43,9 @@
 #define MAX_FEEDRATE         (2000)
 #define MIN_FEEDRATE         (1000)
 
-
-
-// Set to 1 for plololu driver
-// Set to 4 for silent step sticks
-#define SCALER 4
+// 1 - for plololu driver
+// 2 - for silent step sticks
+#define SCALER 2
 
 #define STEPS_PER_TURN 3200
 #define MAX_BUF        64

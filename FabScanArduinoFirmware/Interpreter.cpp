@@ -145,13 +145,13 @@ void processCommand() {
 		case  1: // move linear
 			//if (!laser_active()) right_laser_on();
 			//delay(100);
-			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), 0);
+			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), TURN_NON_BLOCKING);
 			break;
     case 2:
-      do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), 1);
+      do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), TURN_BLOCKING);
       break;
 		case  4:
-			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), 0);
+			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), TURN_NON_BLOCKING);
 			break;
 
     case 5:
@@ -179,6 +179,7 @@ void processCommand() {
 	switch(cmd) {
 		case 4:
 			right_laser_off();
+      left_laser_off();
 			set_leds(parsenumber('R',0),parsenumber('G',0),parsenumber('B',0));
 			break;
 		case 5:
@@ -194,13 +195,14 @@ void processCommand() {
 			break;
 		case 19:
 			left_laser_on();
+      delay(1000);
 			break;
 		case 20:
 			left_laser_off();
 			break;
-
 		case 21:
 			right_laser_on();
+      delay(1000);
 			break;
 		case 22:
 			right_laser_off();
@@ -282,5 +284,5 @@ void where() {
  */
 void ready() {
 	sofar=0;  // clear input buffer
-	Serial.print(F(">"));  // signal ready to receive input
+	Serial.println(F(">"));  // signal ready to receive input
 }
