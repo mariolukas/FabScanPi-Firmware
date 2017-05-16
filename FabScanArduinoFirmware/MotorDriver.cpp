@@ -1,11 +1,11 @@
 #include "configuration.h"
 #include "MotorDriver.h"
 #include "AccelStepper.h"
-#include <Servo.h>
+
 
 AccelStepper turntable(2, STEP_PIN_0, DIR_PIN_0);
 //AccelStepper laser(1, STEP_PIN_1, DIR_PIN_1);
-Servo right_servo;
+
 
 
 int currStepper = TURNTABLE_STEPPER;
@@ -28,19 +28,6 @@ void laser_motor_release(){
 	digitalWrite(ENABLE_PIN_1, HIGH);
 }
 
-void enable_right_servo(){
-  right_servo.attach(RIGHT_SERVO_PIN);
-}
-
-void release_right_servo(){
-  right_servo.detach();
-}
-
-void move_right_servo_to_position(byte pos){
-  enable_right_servo();
-  right_servo.write(pos);
-  release_right_servo();
-}
 
 int direction(long distance){
 	if (distance < 0){
@@ -69,7 +56,7 @@ void initialize_motor_driver(){
 	turntable_motor_release();
 
   // Laser Servos to initial position
-  move_right_servo_to_position(0);
+
 
 }
 
