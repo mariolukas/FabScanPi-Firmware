@@ -155,7 +155,7 @@ void processCommand() {
 			break;
 
     case 5:
-      move_right_servo_to_position(parsenumber('A',0));
+      // reserved for servo action
       break;
 		case 6:
 			start_turning();
