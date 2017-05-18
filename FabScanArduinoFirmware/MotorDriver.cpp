@@ -69,11 +69,11 @@ void step_blocking(int motor, int steps, int feedrate){
    }
    
    stepper.move(steps*SCALER);
-   stepper.setSpeed(100);
+   stepper.setSpeed(feedrate);
    stepper.setAcceleration(500); 
 
    while (stepper.distanceToGo() != 0)
-    stepper.run();
+    stepper.runToPosition();
 
 
 }
@@ -90,7 +90,8 @@ void step(int motor, float steps, float feedrate){
 	}
 
 	stepper.move(steps*SCALER);
-	stepper.setSpeed(100);
+	stepper.setSpeed(feedrate);
+ // stepper.setAcceleration(500); 
 	//motor.setAcceleration(acceleration);
 
 	// Implementation without acceleration.

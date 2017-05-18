@@ -16,8 +16,17 @@
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, LIGHT_PIN, NEO_GRB + NEO_KHZ800);
 
+void set_leds(int r, int g, int b){
+  for(int i=0; i<NUMPIXELS; i++){
+    pixels.setPixelColor(i,pixels.Color(r,g,b));
+  }
+  pixels.show();
+}
+
+
 void initialize_led_driver(){
 	pixels.begin();
+  //set_leds(0,0,0);
 }
 
 
@@ -90,12 +99,6 @@ void version(){
 
 }
 
-void set_leds(int r, int g, int b){
-	for(int i=0; i<NUMPIXELS; i++){
-		pixels.setPixelColor(i,pixels.Color(r,g,b));
-	}
-	pixels.show();
-}
 
 
 /**
