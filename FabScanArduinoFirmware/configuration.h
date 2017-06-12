@@ -10,7 +10,7 @@
 //#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
 
 
-#define VERSION        "v.20170434"
+#define VERSION        "v.20170613"
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
@@ -44,8 +44,8 @@
 #define MIN_FEEDRATE         (1000)
 
 // 1 - for plololu driver
-// 2 - for silent step sticks
-#define SCALER 2
+// 4 - for silent step sticks
+#define SCALER 4
 
 #define STEPS_PER_TURN 3200
 #define MAX_BUF        64
