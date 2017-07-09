@@ -10,14 +10,14 @@
 //#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
 
 
-#define VERSION        "v.20170613"
+#define VERSION        "v.20170709"
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
 // for use with Sanguinololu v1.2 and v1.3
 //#define SANGUINOLOLU_V_1_2
-#define BAUD_RATE 115200
+#define BAUD_RATE 57600
 #define LIGHT_PIN A1
 
 #define TURN_BLOCKING 1
