@@ -8,7 +8,7 @@
 // Copyright at end of file.
 // please see http://www.github.com/MarginallyClever/GcodeCNCDemo for more information.
 
-#include "configuration.h"
+#include "FabScanConfig.h"
 #include "Interpreter.h"
 #include "MotorDriver.h"
 #include "LaserDriver.h"
@@ -16,8 +16,17 @@
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, LIGHT_PIN, NEO_GRB + NEO_KHZ800);
 
+void set_leds(int r, int g, int b){
+  for(int i=0; i<NUMPIXELS; i++){
+    pixels.setPixelColor(i,pixels.Color(r,g,b));
+  }
+  pixels.show();
+}
+
+
 void initialize_led_driver(){
 	pixels.begin();
+  //set_leds(0,0,0);
 }
 
 
@@ -69,7 +78,7 @@ void output(const char *code,float val) {
  */
 void help() {
 	Serial.print(F("FabScan G-CODDE Interpreter Version: "));
-	Serial.println(VERSION);
+	Serial.println(BUILD_VERSION);
 	Serial.println(F("Commands:"));
 	Serial.println(F("G00 [T(steps)]; - linear move"));
 	Serial.println(F("G01 [T(steps)] [L(steps)] [F(feedrate)]; - move"));
@@ -84,19 +93,22 @@ void help() {
 }
 
 void version(){
-
-	//Serial.print("version ");
-	Serial.println(VERSION);
-
+	Serial.println(BUILD_VERSION);
 }
 
-void set_leds(int r, int g, int b){
-	for(int i=0; i<NUMPIXELS; i++){
-		pixels.setPixelColor(i,pixels.Color(r,g,b));
-	}
-	pixels.show();
+void board(){
+  Serial.println(MOTHERBOARD);
 }
 
+void settingsmode(int state){
+  if (state) {
+      right_laser_on();
+      start_turning();
+  } else {
+      right_laser_off();
+      stop_turning();
+  }
+}
 
 /**
  * Read the input buffer and find any recognized commands.  One G or M command per line.
@@ -155,7 +167,7 @@ void processCommand() {
 			break;
 
     case 5:
-      move_right_servo_to_position(parsenumber('A',0));
+      // reserved for servo action
       break;
 		case 6:
 			start_turning();
@@ -185,6 +197,9 @@ void processCommand() {
 		case 5:
 			set_leds(parsenumber('R',0),parsenumber('G',0),parsenumber('B',0));
 			break;
+    case 10: // settings Mode 
+
+      break;
 		case 17:  // enable motors
 			turntable_motor_enable();
 			laser_motor_enable();
@@ -195,14 +210,14 @@ void processCommand() {
 			break;
 		case 19:
 			left_laser_on();
-      delay(1000);
+      delay(500);
 			break;
 		case 20:
 			left_laser_off();
 			break;
 		case 21:
 			right_laser_on();
-      delay(1000);
+      delay(500);
 			break;
 		case 22:
 			right_laser_off();
@@ -211,6 +226,7 @@ void processCommand() {
 		case 110:  line_number = parsenumber('N',line_number);  break;
 		case 114:  where();  break;
 		case 200:  version(); break;
+    case 201:  board(); break;
 		default:  break;
 	}
 }

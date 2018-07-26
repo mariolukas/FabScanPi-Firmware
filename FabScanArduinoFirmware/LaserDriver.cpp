@@ -1,4 +1,4 @@
-#include "configuration.h"
+#include "FabScanConfig.h"
 #include "LaserDriver.h"
 
 boolean laser_is_active = false;

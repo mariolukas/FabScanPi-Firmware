@@ -16,6 +16,7 @@ void feedrate(float nfr);
 void line(float newx,float newy);
 void help();
 void version();
+void board();
 void ready();
 void where();
 void processCommand();
