@@ -9,6 +9,7 @@
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
 //#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
 
+
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
@@ -28,6 +29,7 @@
 #endif
 
 #define BAUD_RATE 115200
+
 
 #define TURN_BLOCKING 1
 #define TURN_NON_BLOCKING 0
