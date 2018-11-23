@@ -9,8 +9,6 @@
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
 //#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
 
-#define VERSION        "v.20170709"
-
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
@@ -26,10 +24,10 @@
  */
  
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_CYCLOP
+  #define MOTHERBOARD BOARD_FABSCANPI
 #endif
 
-#define BAUD_RATE 57600
+#define BAUD_RATE 115200
 
 #define TURN_BLOCKING 1
 #define TURN_NON_BLOCKING 0

@@ -1,6 +1,7 @@
 /.project
 *.pro.user*
 CMakeLists.txt.user*
+FabScanArduinoFirmware/*.hex
 
 .make.cache
 .qmake.cache
