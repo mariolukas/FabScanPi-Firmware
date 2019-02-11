@@ -21,6 +21,7 @@ void set_leds(int r, int g, int b){
     pixels.setPixelColor(i,pixels.Color(r,g,b));
   }
   pixels.show();
+  delay(100);
 }
 
 
@@ -210,14 +211,12 @@ void processCommand() {
 			break;
 		case 19:
 			left_laser_on();
-      delay(500);
 			break;
 		case 20:
 			left_laser_off();
 			break;
 		case 21:
 			right_laser_on();
-      delay(500);
 			break;
 		case 22:
 			right_laser_off();

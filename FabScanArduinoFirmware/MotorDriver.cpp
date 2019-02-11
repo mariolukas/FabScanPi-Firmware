@@ -68,12 +68,12 @@ void step_blocking(int motor, int steps, int feedrate){
       stepper = turntable;
    }
    
-   stepper.move(steps);
+   //stepper.move(steps);
    stepper.setSpeed(feedrate);
    stepper.setAcceleration(500); 
 
-   while (stepper.distanceToGo() != 0)
-    stepper.runToPosition();
+   //while (stepper.distanceToGo() != 0)
+   stepper.runToNewPosition(steps);
 
 
 }
@@ -138,6 +138,3 @@ void start_turning(){
 void stop_turning(){
 	isTurning = false;
 }
-
-
-
