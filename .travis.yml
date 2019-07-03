@@ -9,13 +9,14 @@ compiler:
  - gcc
 
 before_install:
- - sudo apt-get update -qq && sudo apt-get install -qq openjdk-6-jre avr-libc gcc-avr xvfb
+ - sudo apt-get update -qq && sudo apt-get install -qq avr-libc gcc-avr 
 
 install:
  # arduino
- - wget http://downloads-02.arduino.cc/arduino-1.6.1-linux64.tar.xz
- - tar -xvf arduino-1.6.1-linux64.tar.xz
- - sudo mv arduino-1.6.1/ /usr/local/share/arduino
+ - wget https://downloads.arduino.cc/arduino-cli/arduino-cli-latest-linux64.tar.bz2
+ - tar -xvfj arduino-cli-latest-linux64.tar.bz2
+ - chmod a+x arduino-cli-0.3.7-alpha.preview-linux64
+ - sudo mv arduino-cli-0.3.7-alpha.preview-linux64 /usr/local/share/arduino-cli
 
  # you could add attiny the extra attiny board package
 # - wget https://github.com/damellis/attiny/archive/ide-1.6.x.zip
@@ -25,10 +26,11 @@ install:
 before_script:
  # arduino requires an X server even with command line
  # https://github.com/arduino/Arduino/issues/1981
- - Xvfb :1 -screen 0 1024x768x16 &> xvfb.log &
+ #- Xvfb :1 -screen 0 1024x768x16 &> xvfb.log &
  # put your source files in a folder under a new libraries folder
- - sudo mkdir -p /usr/src/arduino/libraries
+ #- sudo mkdir -p /usr/src/arduino/libraries
  # sudo ln -s $TRAVIS_BUILD_DIR/$NAME /usr/src/arduino/libraries/$NAME
 
 script:
- - sudo DISPLAY=:1.0 /usr/local/share/arduino/arduino --board $BOARD --pref sketchbook.path=/usr/src/arduino --verify $TRAVIS_BUILD_DIR/$NAME/$NAME.ino
+ - cd $TRAVIS_BUILD_DIR/$NAME
+ - make

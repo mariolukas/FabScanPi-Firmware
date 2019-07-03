@@ -28,8 +28,9 @@
   #define MOTHERBOARD BOARD_FABSCANPI
 #endif
 
-#define BAUD_RATE 57600
-
+#ifndef BAUDRATE
+  #define BAUD_RATE 57600
+#endif
 
 #define TURN_BLOCKING 1
 #define TURN_NON_BLOCKING 0

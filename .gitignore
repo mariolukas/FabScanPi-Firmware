@@ -21,7 +21,9 @@ FabScanArduinoFirmware/*.hex
 .DS_Store
 .svn
 *.qm
+*.hex
+*.elf
 
 # Build targets:
 /**/*-build/
-
+build/
