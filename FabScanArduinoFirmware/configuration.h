@@ -29,7 +29,7 @@
 #endif
 
 #ifndef BAUDRATE
-  #define BAUD_RATE 57600
+  #define BAUDRATE 57600
 #endif
 
 #define TURN_BLOCKING 1
