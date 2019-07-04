@@ -17,13 +17,14 @@
  * The following define selects which electronics board you have.
  * Please choose the name from boards.h that matches your setup.
  * Some possible Values are:
- * 
+ *
  * BOARD_FABSCANPI    - FabScanPi Hat for Raspberry Pi
  * BOARD_CYCLOP       - Cyclop Scanner ZUM Scan Board
  * BOARD_SANGUINOLOLU - Sanguinololu 3D Printer Board v 1.3
- * 
+ * BOARD_CNCSHIELD - Arduino Uno with CNC shield V3.0 or newer (see grbl project for pinout)
+ *
  */
- 
+
 #ifndef MOTHERBOARD
   #define MOTHERBOARD BOARD_FABSCANPI
 #endif
