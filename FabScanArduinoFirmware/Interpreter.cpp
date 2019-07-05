@@ -31,7 +31,7 @@ void initialize_led_driver(){
 }
 
 
-char buffer[MAX_BUF];  // where we store the message until we get a ';'
+char serialBuffer[MAX_BUF];  // where we store the message until we get a ';'
 int sofar;  // how much is in the buffer
 long line_number=0;
 
@@ -52,15 +52,15 @@ char mode_abs=0;  // absolute mode??
  * @input code the character to look for.
  * @input val the return value if /code/ is not found.
  **/
-int parsenumber(char code,int val) {
-	char *ptr=buffer;
-	while(ptr && *ptr && ptr<buffer+sofar) {
-		if(*ptr==code) {
-			return atoi(ptr+1);
-		}
-		ptr=strchr(ptr,' ')+1;
-	}
-	return val;
+float parseNumber(char code,float val) {
+  char *ptr=serialBuffer;  // start at the beginning of buffer
+  while((long)ptr > 1 && (*ptr) && (long)ptr < (long)serialBuffer+sofar) {  // walk to the end
+    if(*ptr==code) {  // if you find code on your walk,
+      return atof(ptr+1);  // convert the digits that follow into a float and return it
+    }
+    ptr=strchr(ptr,' ')+1;  // take a step from here to the letter after the next space
+  }
+  return val;  // end reached, nothing found, return default val.
 }
 
 
@@ -116,13 +116,13 @@ void settingsmode(int state){
  */
 void processCommand() {
 	// blank lines
-	if(buffer[0]==';') return;
+	if(serialBuffer[0]==';') return;
 
-	long cmd;
+	int cmd;
 
 	// is there a line number?
-	cmd=parsenumber('N',-1);
-	if(cmd!=-1 && buffer[0]=='N') {  // line number must appear first on the line
+	cmd = parseNumber('N',-1);
+	if(cmd!=-1 && serialBuffer[0]=='N') {  // line number must appear first on the line
 		if( cmd != line_number ) {
 			// wrong line number error
 			Serial.print(F("BADLINENUM "));
@@ -131,13 +131,13 @@ void processCommand() {
 		}
 
 		// is there a checksum?
-		if(strchr(buffer,'*')!=0) {
+		if(strchr(serialBuffer,'*')!=0) {
 			// yes.  is it valid?
 			char checksum=0;
 			int c=0;
-			while(buffer[c]!='*') checksum ^= buffer[c++];
+			while(serialBuffer[c]!='*') checksum ^= serialBuffer[c++];
 			c++; // skip *
-			int against = strtod(buffer+c,NULL);
+			int against = strtod(serialBuffer+c,NULL);
 			if( checksum != against ) {
 				Serial.print(F("BADCHECKSUM "));
 				Serial.println(line_number);
@@ -152,19 +152,19 @@ void processCommand() {
 		line_number++;
 	}
 
-	cmd = parsenumber('G',-1);
+	cmd = parseNumber('G',-1);
 	switch(cmd) {
 		case  0: // move linear
 		case  1: // move linear
 			//if (!laser_active()) right_laser_on();
 			//delay(100);
-			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), TURN_NON_BLOCKING);
+			do_move(parseNumber('T',0), parseNumber('L',0), parseNumber('F',0), TURN_NON_BLOCKING);
 			break;
     case 2:
-      do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), TURN_BLOCKING);
+      do_move(parseNumber('T',0), parseNumber('L',0), parseNumber('F',0), TURN_BLOCKING);
       break;
 		case  4:
-			do_move(parsenumber('T',0), parsenumber('L',0), parsenumber('F',0), TURN_NON_BLOCKING);
+			do_move(parseNumber('T',0), parseNumber('L',0), parseNumber('F',0), TURN_NON_BLOCKING);
 			break;
 
     case 5:
@@ -182,21 +182,21 @@ void processCommand() {
 		case 90: // mode_abs=1;  break;  // absolute mode
 		case 91: // mode_abs=0;  break;  // relative mode
 		case 92:  // set logical position
-			/*position( parsenumber('X',0),
-					parsenumber('Y',0) );*/
+			/*position( parseNumber('X',0),
+					parseNumber('Y',0) );*/
 			break;
 		default:  break;
 	}
 
-	cmd = parsenumber('M',-1);
+	cmd = parseNumber('M',-1);
 	switch(cmd) {
 		case 4:
 			right_laser_off();
       left_laser_off();
-			set_leds(parsenumber('R',0),parsenumber('G',0),parsenumber('B',0));
+			set_leds(parseNumber('R',0),parseNumber('G',0),parseNumber('B',0));
 			break;
 		case 5:
-			set_leds(parsenumber('R',0),parsenumber('G',0),parsenumber('B',0));
+			set_leds(parseNumber('R',0),parseNumber('G',0),parseNumber('B',0));
 			break;
     case 10: // settings Mode 
 
@@ -222,7 +222,7 @@ void processCommand() {
 			right_laser_off();
 			break;
 		case 100:  help();  break;
-		case 110:  line_number = parsenumber('N',line_number);  break;
+		case 110:  line_number = parseNumber('N',line_number);  break;
 		case 114:  where();  break;
 		case 200:  version(); break;
     case 201:  board(); break;

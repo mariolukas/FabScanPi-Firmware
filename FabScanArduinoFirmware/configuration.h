@@ -25,10 +25,10 @@
  */
  
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_FABSCANPI
+  #define MOTHERBOARD BOARD_CYCLOP
 #endif
 
-#define BAUD_RATE 57600
+#define BAUD_RATE 14400
 
 
 #define TURN_BLOCKING 1

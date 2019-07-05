@@ -9,7 +9,7 @@
 #endif
 
 
-extern char buffer[MAX_BUF];  // where we store the message until we get a ';'
+extern char serialBuffer[MAX_BUF];  // where we store the message until we get a ';'
 extern int sofar;  // how much is in the buffer
 
 void feedrate(float nfr);
@@ -23,4 +23,3 @@ void processCommand();
 void initialize_led_driver();
 
 #endif
-
