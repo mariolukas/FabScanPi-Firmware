@@ -3,10 +3,13 @@
 CMakeLists.txt.user*
 FabScanArduinoFirmware/*.hex
 
+../.idea/
+.idea/
 .make.cache
 .qmake.cache
 .qmake.vars
 
+*.swp
 *~
 *.a
 *.la
@@ -21,7 +24,9 @@ FabScanArduinoFirmware/*.hex
 .DS_Store
 .svn
 *.qm
+*.hex
+*.elf
 
 # Build targets:
 /**/*-build/
-
+build/

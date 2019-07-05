@@ -17,7 +17,7 @@
 void setup()
 {
   // initialize the serial port
-  Serial.begin(BAUD_RATE);
+  Serial.begin(BAUDRATE);
 
   initialize_laser_driver();
   initialize_motor_driver();

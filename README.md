@@ -13,7 +13,7 @@ Firmware of FabScanPi 3D Laser Scanner
     M22; Turn Off Laser 1
     M100; Show Help Message
     
-## Board Support.
+## Supported Boards
 
 The firmware can be extended by adding new board files. 
 Board files are used to define the pinout for a board. 
