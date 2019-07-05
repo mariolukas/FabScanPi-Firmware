@@ -7,6 +7,7 @@ FabScanArduinoFirmware/*.hex
 .qmake.cache
 .qmake.vars
 
+*.swp
 *~
 *.a
 *.la
