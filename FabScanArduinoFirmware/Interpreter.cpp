@@ -1,5 +1,3 @@
-
-
 // Parts of the follwing Code are from the 2 AXIS CNC Demo Code ( see info below)
 //------------------------------------------------------------------------------
 // 2 Axis CNC Demo v2 - supports Adafruit motor shields v1 and v2
@@ -198,8 +196,17 @@ void processCommand() {
 		case 5:
 			set_leds(parseNumber('R',0),parseNumber('G',0),parseNumber('B',0));
 			break;
-    case 10: // settings Mode 
-
+    case 13: 
+      turntable_motor_enable();
+      break;
+    case 14: 
+      turntable_motor_release();
+      break;
+    case 15: 
+      laser_motor_enable();
+      break;
+    case 16: 
+      laser_motor_release();
       break;
 		case 17:  // enable motors
 			turntable_motor_enable();
