@@ -203,18 +203,18 @@ void processCommand() {
       turntable_motor_release();
       break;
     case 15: 
-      laser_motor_enable();
+      //laser_motor_enable();
       break;
     case 16: 
-      laser_motor_release();
+      //laser_motor_release();
       break;
 		case 17:  // enable motors
 			turntable_motor_enable();
-			laser_motor_enable();
+			//laser_motor_enable();
 			break;
 		case 18:  // disable motors
 			turntable_motor_release();
-			laser_motor_release();
+			//laser_motor_release();
 			break;
 		case 19:
 			left_laser_on();
