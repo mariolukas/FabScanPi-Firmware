@@ -26,7 +26,7 @@
  */
 
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_CYCLOP
+  #define MOTHERBOARD BOARD_FABSCANPI
 #endif
 
 #ifndef BAUDRATE

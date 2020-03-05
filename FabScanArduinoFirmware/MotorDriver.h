@@ -13,12 +13,8 @@ void turn();
 void start_turning();
 void stop_turning();
 void initialize_motor_driver();
-void step_blocking(int motor, int turntable_distance, int feedrate);
-void do_move(int laser_distance, int turntable_distance, float feedrate, boolean block);
+void do_move(long laser_distance, long turntable_distance, float feedrate, boolean block);
 void turntable_motor_enable();
-void laser_motor_enable();
 void turntable_motor_release();
-void laser_motor_release();
 
 #endif
-
