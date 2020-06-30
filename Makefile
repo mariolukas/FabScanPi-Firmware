@@ -9,7 +9,7 @@ $(shell mkdir -p $(DIRS))
 all: fabscanpi ciclop sanguinololu cncshield
 
 # original FabScanPi HAT
-fabscanpi: EXTRA_FLAGS = "-DMOTHERBOARD=1 -DBAUDRATE=57600"
+fabscanpi: EXTRA_FLAGS = "-DMOTHERBOARD=1 -DBAUDRATE=115200"
 	PLATFORM = arduino:avr:uno
 fabscanpi: 
 	arduino-cli compile --fqbn $(PLATFORM) --build-properties build.extra_flags=$(EXTRA_FLAGS) \
@@ -24,14 +24,14 @@ ciclop:
 
 
 # Sanguinololu Board
-sanguinololu: EXTRA_FLAGS = "-DMOTHERBOARD=3  -DBAUDRATE=57600"
+sanguinololu: EXTRA_FLAGS = "-DMOTHERBOARD=3  -DBAUDRATE=115200"
 	PLATFORM = arduino:avr:uno
 sanguinololu:
 	arduino-cli compile --fqbn $(PLATFORM) --build-properties build.extra_flags=$(EXTRA_FLAGS) \
 	--output=$(BUILD_DIR)/sanguinololu_$(OUTPUT_FILE_POSTFIX).hex $(SOURCE_TARGET) --verbose
 
 # CNC Shield 
-cncshield: EXTRA_FLAGS = "-DMOTHERBOARD=4 -DBAUDRATE=57600"
+cncshield: EXTRA_FLAGS = "-DMOTHERBOARD=4 -DBAUDRATE=115200"
 	PLATFORM = arduino:avr:uno
 cncshield:
 	arduino-cli compile --fqbn $(PLATFORM) --build-properties build.extra_flags=$(EXTRA_FLAGS) \

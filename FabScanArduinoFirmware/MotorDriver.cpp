@@ -24,21 +24,13 @@ int direction(long distance){
 }
 
 void initialize_motor_driver(){
-	pinMode(MICROSTEP, OUTPUT);
-	digitalWrite(MICROSTEP,LOW);
-  
+
 	pinMode(ENABLE_PIN_0, OUTPUT);
-	pinMode(ENABLE_PIN_1, OUTPUT);
-  
 	pinMode(STEP_PIN_0, OUTPUT);
-	pinMode(STEP_PIN_1, OUTPUT);
-  
-	digitalWrite(MICROSTEP,HIGH);
 
-	turntable.setMaxSpeed(300.0);
-	turntable.setSpeed(200.0);
+	turntable.setMaxSpeed(3000.0);
+	turntable.setSpeed(2000.0);
 	turntable_motor_release();
-
 }
 
 void step_blocking(long motor, long steps, float feedrate){
@@ -46,16 +38,15 @@ void step_blocking(long motor, long steps, float feedrate){
    stepper = turntable;
 
    stepper.setSpeed(feedrate);
-   stepper.setAcceleration(800.0); 
+   stepper.setAcceleration(500.0); 
 
    //while (stepper.distanceToGo() != 0)
    stepper.runToNewPosition(steps);
 
-
 }
 
 
-void step(int motor, int steps, int feedrate){
+void step(int motor, int steps, float feedrate){
 	AccelStepper stepper;
 	stepper = turntable;
 
@@ -72,12 +63,12 @@ void step(int motor, int steps, int feedrate){
 void do_move(long t_steps, long l_steps, float feedrate, boolean block){
 
  if (block) {
-      if (t_steps > 0){
+      if (t_steps != 0){
         step_blocking(TURNTABLE_STEPPER, t_steps, feedrate);
       }
 
   } else {
-    	if (t_steps > 0){
+    	if (t_steps != 0){
     		step(TURNTABLE_STEPPER, t_steps, feedrate);
     	}
 
