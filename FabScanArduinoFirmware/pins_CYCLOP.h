@@ -26,7 +26,7 @@
 /**
  * WS2812 LED 
  */
-#define LIGHT_PIN A1
+#define LIGHT_PIN A0
 
 /**
  * Optional Laser Stepper

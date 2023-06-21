@@ -18,11 +18,22 @@ void setup()
 {
   // initialize the serial port
   Serial.begin(BAUDRATE);
-
+  initialize_fan();
+  initialize_status_leds();
+  initialize_led_driver();
   initialize_laser_driver();
   initialize_motor_driver();
-  initialize_led_driver();
   turntable_motor_release();
+
+
+  #ifdef RED_STATUS_LED
+  digitalWrite(RED_STATUS_LED, LOW);
+  #endif
+
+  #ifdef YELLOW_STATUS_LED
+  digitalWrite(YELLOW_STATUS_LED, LOW);
+  #endif
+  
   //laser_motor_release();
 
   currStepper = TURNTABLE_STEPPER;  //turntable is default stepper

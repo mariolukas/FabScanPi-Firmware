@@ -31,6 +31,32 @@ void initialize_led_driver(){
   //set_leds(0,0,0);
 }
 
+void initialize_status_leds(){
+
+ #ifdef RED_STATUS_LED
+    pinMode(RED_STATUS_LED, OUTPUT);
+    digitalWrite(RED_STATUS_LED, HIGH);
+ #endif
+
+ #ifdef YELLOW_STATUS_LED
+    pinMode(YELLOW_STATUS_LED, OUTPUT);
+    digitalWrite(YELLOW_STATUS_LED, HIGH);
+ #endif
+
+ #ifdef GREEN_STATUS_LED
+    pinMode(GREEN_STATUS_LED, OUTPUT);
+    digitalWrite(GREEN_STATUS_LED, HIGH);
+ #endif
+
+}
+
+void initialize_fan(){
+ #ifdef FAN_PIN
+      pinMode(FAN_PIN, OUTPUT);
+      digitalWrite(FAN_PIN, HIGH);
+ #endif
+}
+
 
 char serialBuffer[MAX_BUF];  // where we store the message until we get a ';'
 int sofar;  // how much is in the buffer

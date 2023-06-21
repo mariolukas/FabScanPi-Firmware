@@ -21,5 +21,7 @@ void ready();
 void where();
 void processCommand();
 void initialize_led_driver();
+void initialize_status_leds();
+void initialize_fan();
 
 #endif

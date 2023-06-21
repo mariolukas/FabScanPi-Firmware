@@ -26,7 +26,7 @@
  */
 
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_FABSCANPI
+  #define MOTHERBOARD BOARD_FABSCANPIV2
 #endif
 
 #ifndef BAUDRATE
@@ -36,7 +36,7 @@
 #define TURN_BLOCKING 1
 #define TURN_NON_BLOCKING 0
 
-#define NUMPIXELS 16
+#define NUMPIXELS 24
 #define MAX_FEEDRATE         (2000)
 #define MIN_FEEDRATE         (1000)
 
