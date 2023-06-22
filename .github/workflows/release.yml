@@ -1,0 +1,96 @@
+name: Release Firmware Files
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build-firmware:
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - name: 🏗 Install build dependencies
+        run: sudo apt-get -qq update && sudo apt-get -y install build-essential curl
+
+      - name: Install Arduino CLI
+        run: curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/bin sh
+
+      - name: Install platform
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr
+          arduino-cli lib install AccelStepper
+          arduino-cli lib install "Adafruit NeoPixel"
+      
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      - name: ⬇ Checkout code
+        uses: actions/checkout@v2
+        with:
+         fetch-depth: 0
+
+      - name: 🔨 Build Firmware Packages
+        run: sudo make
+
+      - name: Create new Firmware Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.vars.outputs.tag }}
+          release_name: Release ${{ steps.vars.outputs.tag }}
+          draft: false
+          prerelease: false
+      
+      - name: Upload FabScanPI HAT Firmware as Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/fabscanpi_v.${{ steps.date.outputs.date }}.hex
+          asset_name: fabscanpi_v.${{ steps.date.outputs.date }}.hex
+
+      - name: Upload FabScanPI HAT V2 Firmware as Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/fabscanpiv2_v.${{ steps.date.outputs.date }}.hex
+          asset_name: fabscanpiv2_v.${{ steps.date.outputs.date }}.hex
+
+      - name: Upload ciclop shield Firmware as Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/ciclop_v.${{ steps.date.outputs.date }}.hex
+          asset_name: ciclop_v.${{ steps.date.outputs.date }}.hex
+
+      - name: Upload sanguinololu shield Firmware as Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/sanguinololu_v.${{ steps.date.outputs.date }}.hex
+          asset_name: sanguinololu_v.${{ steps.date.outputs.date }}.hex
+
+      - name: Upload cncshield shield Firmware as Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/cncshield_v.${{ steps.date.outputs.date }}.hex
+          asset_name: cncshield_v.${{ steps.date.outputs.date }}.hex

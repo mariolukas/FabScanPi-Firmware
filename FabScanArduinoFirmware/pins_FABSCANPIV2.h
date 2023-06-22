@@ -4,29 +4,29 @@
 /*
  * Laser 
  */
-#define RIGHT_LASER_PIN 12 //Bed (1284p=p18
-#define LEFT_LASER_PIN 13  //Hotend (1284p=p19)
+#define RIGHT_LASER_PIN 9 
+#define LEFT_LASER_PIN 10 
 
 
 /*
- * Turntable 
+ * Turntable Stepper
  */
-#define ENABLE_PIN_0  14
-#define STEP_PIN_0    15
-#define DIR_PIN_0     21
-
+#define ENABLE_PIN_0  2
+#define STEP_PIN_0    3
+#define DIR_PIN_0     4
 
 /**
  * WS2812 LED 
  */
 #define LIGHT_PIN A1
 
-/*
+/**
  * Optional Laser Stepper
  */
-#define ENABLE_PIN_1  26
-#define STEP_PIN_1    3
-#define DIR_PIN_1     2
+
+#define ENABLE_PIN_1  5
+#define STEP_PIN_1    6
+#define DIR_PIN_1     7
 
 
 /* 

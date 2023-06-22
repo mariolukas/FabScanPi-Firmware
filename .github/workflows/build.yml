@@ -1,0 +1,28 @@
+name: Build Firmware Files
+on: [push]
+jobs:
+  build-firmware:
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - name: 🏗 Install build dependencies
+        run: sudo apt-get -qq update && sudo apt-get -y install build-essential curl
+
+      - name: Install Arduino CLI
+        run: curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/bin sh
+
+      - name: Install platform
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr
+          arduino-cli lib install AccelStepper
+          arduino-cli lib install "Adafruit NeoPixel"
+      
+      - name: ⬇ Checkout code
+        uses: actions/checkout@v2
+        with:
+         fetch-depth: 0
+
+      - name: 🔨 Build Firmware Packages
+        run: sudo make
