@@ -12,6 +12,11 @@ jobs:
       - name: 🏗 Install build dependencies
         run: sudo apt-get -qq update && sudo apt-get -y install build-essential curl
 
+      - name: ⬇ Checkout code
+        uses: actions/checkout@v2
+        with:
+         fetch-depth: 0
+
       - name: Install Arduino CLI
         run: curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/local/bin sh
 
@@ -22,17 +27,8 @@ jobs:
           arduino-cli lib install AccelStepper
           arduino-cli lib install "Adafruit NeoPixel"
       
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-
-      - name: ⬇ Checkout code
-        uses: actions/checkout@v2
-        with:
-         fetch-depth: 0
-
       - name: 🔨 Build Firmware Packages
-        run: sudo make
+        run: make
 
       - name: Create new Firmware Release
         id: create_release
