@@ -13,7 +13,7 @@ jobs:
         run: sudo apt-get -qq update && sudo apt-get -y install build-essential curl
 
       - name: Install Arduino CLI
-        run: curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/bin sh
+        run: curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/local/bin sh
 
       - name: Install platform
         run: |
