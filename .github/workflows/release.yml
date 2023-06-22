@@ -14,11 +14,11 @@ jobs:
 
       - name: Get latest tag
         id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF:10}
+        run: echo "tag=${GITHUB_REF:10}" >> $GITHUB_OUTPUT
 
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: echo "date=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
 
       - name: ⬇ Checkout code
         uses: actions/checkout@v2
@@ -58,6 +58,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/fabscanpi_v.${{ steps.date.outputs.date }}.hex
           asset_name: fabscanpi_v.${{ steps.date.outputs.date }}.hex
+          asset_content_type: application/octet-stream
 
       - name: Upload FabScanPI HAT V2 Firmware as Asset
         id: upload-fabscanpiv2
@@ -68,6 +69,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/fabscanpiv2_v.${{ steps.date.outputs.date }}.hex
           asset_name: fabscanpiv2_v.${{ steps.date.outputs.date }}.hex
+          asset_content_type: application/octet-stream
 
       - name: Upload ciclop shield Firmware as Asset
         id: upload-ciclop
@@ -78,6 +80,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/ciclop_v.${{ steps.date.outputs.date }}.hex
           asset_name: ciclop_v.${{ steps.date.outputs.date }}.hex
+          asset_content_type: application/octet-stream
 
       - name: Upload sanguinololu shield Firmware as Asset
         id: upload-sanguinololu
@@ -88,6 +91,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/sanguinololu_v.${{ steps.date.outputs.date }}.hex
           asset_name: sanguinololu_v.${{ steps.date.outputs.date }}.hex
+          asset_content_type: application/octet-stream
 
       - name: Upload cncshield shield Firmware as Asset
         id: upload-cncshield
@@ -98,3 +102,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/cncshield_v.${{ steps.date.outputs.date }}.hex
           asset_name: cncshield_v.${{ steps.date.outputs.date }}.hex
+          asset_content_type: application/octet-stream
