@@ -42,7 +42,7 @@ jobs:
           prerelease: false
       
       - name: Upload FabScanPI HAT Firmware as Asset
-        id: upload-release-asset
+        id: upload-fabscanpi
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,7 +52,7 @@ jobs:
           asset_name: fabscanpi_v.${{ steps.date.outputs.date }}.hex
 
       - name: Upload FabScanPI HAT V2 Firmware as Asset
-        id: upload-release-asset
+        id: upload-fabscanpiv2
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -62,7 +62,7 @@ jobs:
           asset_name: fabscanpiv2_v.${{ steps.date.outputs.date }}.hex
 
       - name: Upload ciclop shield Firmware as Asset
-        id: upload-release-asset
+        id: upload-ciclop
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -72,7 +72,7 @@ jobs:
           asset_name: ciclop_v.${{ steps.date.outputs.date }}.hex
 
       - name: Upload sanguinololu shield Firmware as Asset
-        id: upload-release-asset
+        id: upload-sanguinololu
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -82,7 +82,7 @@ jobs:
           asset_name: sanguinololu_v.${{ steps.date.outputs.date }}.hex
 
       - name: Upload cncshield shield Firmware as Asset
-        id: upload-release-asset
+        id: upload-cncshield
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
