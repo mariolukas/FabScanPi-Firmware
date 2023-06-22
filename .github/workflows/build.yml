@@ -12,16 +12,12 @@ jobs:
       - name: Install Arduino CLI
         run: curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/local/bin sh
 
-      - name: ⬇ Checkout code
-        uses: actions/checkout@v2
-        with:
-         fetch-depth: 0
-
-      - name: Install platform and 🔨 Build Firmware Packages
+      - name: Install platform
         run: |
           arduino-cli core update-index
           arduino-cli core install arduino:avr
           arduino-cli lib install AccelStepper
           arduino-cli lib install "Adafruit NeoPixel"
-          sudo make
       
+      - name: 🔨 Build Firmware Packages
+        run: make
