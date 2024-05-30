@@ -12,27 +12,27 @@ all: fabscanpi fabscanpiv2 ciclop sanguinololu cncshield
 fabscanpi: EXTRA_FLAGS = "-DMOTHERBOARD=1 -DBAUDRATE=115200"
 	PLATFORM = arduino:avr:uno
 fabscanpi: 
-	arduino-cli compile -b $(PLATFORM) --build-property build.extra_flags=$(EXTRA_FLAGS) --build-property build.project_name=fabscanpi_$(OUTPUT_FILE_POSTFIX) \
+	arduino-cli compile -b $(PLATFORM) --build-properties build.extra_flags=$(EXTRA_FLAGS) --build-properties build.project_name=fabscanpi_$(OUTPUT_FILE_POSTFIX) \
 	--output-dir=$(BUILD_DIR) $(SOURCE_TARGET) --verbose
 
 fabscanpiv2: EXTRA_FLAGS = "-DMOTHERBOARD=5 -DBAUDRATE=115200"
 	PLATFORM = arduino:avr:uno
 fabscanpiv2: 
-	arduino-cli compile -b $(PLATFORM) --build-property build.extra_flags=$(EXTRA_FLAGS) --build-property build.project_name=fabscanpiv2_$(OUTPUT_FILE_POSTFIX)  \
+	arduino-cli compile -b $(PLATFORM) --build-properties build.extra_flags=$(EXTRA_FLAGS) --build-properties build.project_name=fabscanpiv2_$(OUTPUT_FILE_POSTFIX)  \
 	--output-dir=$(BUILD_DIR) $(SOURCE_TARGET) --verbose
 
 # ciclop ZUM Board
 ciclop: EXTRA_FLAGS = "-DMOTHERBOARD=2 -DBAUDRATE=14400"
 	PLATFORM = arduino:avr:uno
 ciclop:
-	arduino-cli compile -b $(PLATFORM) --build-property build.extra_flags=$(EXTRA_FLAGS) --build-property build.project_name=ciclop_$(OUTPUT_FILE_POSTFIX) \
+	arduino-cli compile -b $(PLATFORM) --build-properties build.extra_flags=$(EXTRA_FLAGS) --build-properties build.project_name=ciclop_$(OUTPUT_FILE_POSTFIX) \
 	--output-dir=$(BUILD_DIR) $(SOURCE_TARGET) --verbose
 
 # Sanguinololu Board
 sanguinololu: EXTRA_FLAGS = "-DMOTHERBOARD=3  -DBAUDRATE=115200"
 	PLATFORM = arduino:avr:uno
 sanguinololu:
-	arduino-cli compile -b $(PLATFORM) --build-property build.extra_flags=$(EXTRA_FLAGS) --build-property build.project_name=sanguinololu_$(OUTPUT_FILE_POSTFIX) \
+	arduino-cli compile -b $(PLATFORM) --build-properties build.extra_flags=$(EXTRA_FLAGS) --build-properties build.project_name=sanguinololu_$(OUTPUT_FILE_POSTFIX) \
 	--output-dir=$(BUILD_DIR) $(SOURCE_TARGET) --verbose
 
 # CNC Shield 

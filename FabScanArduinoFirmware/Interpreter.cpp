@@ -154,6 +154,18 @@ void settingsmode(int state){
   }
 }
 
+void fan_on(){
+#ifdef FAN_PIN
+  digitalWrite(FAN_PIN, HIGH);
+#endif
+}
+
+void fan_off(){
+#ifdef FAN_PIN
+  digitalWrite(FAN_PIN, LOW);
+#endif
+}
+
 /**
  * Read the input buffer and find any recognized commands.  One G or M command per line.
  */
@@ -212,6 +224,12 @@ void processCommand() {
 		case 22:
 			right_laser_off();
 			break;
+    case 23:
+      fan_on();
+      break;
+    case 24:
+      fan_off();
+      break;
 		case 100:  help();  break;
 		case 200:  version(); break;
     case 201:  board(); break;

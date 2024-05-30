@@ -33,7 +33,11 @@ void setup()
   #ifdef YELLOW_STATUS_LED
   digitalWrite(YELLOW_STATUS_LED, LOW);
   #endif
-  
+
+
+   #ifdef FAN_PIN
+   digitalWrite(FAN_PIN, HIGH);
+   #endif
   //laser_motor_release();
 
   currStepper = TURNTABLE_STEPPER;  //turntable is default stepper
